@@ -67,17 +67,6 @@ public class DrawingProgram extends Application {
         properties.getChildren().add(colorSetting);
 
         ShapeSetting shapeSetting = new ShapeSetting("Shape: ", settingHeight, settingRatio);
-        shapeSetting.setConverter(new StringConverter<Object>(){
-            @Override
-            public String toString(Object obj){
-                return ((Class)obj).getSimpleName();
-            }
-
-            @Override
-            public Object fromString(String s){
-                return null;
-            }
-        });
         shapeSetting.setOnAction(e -> {
             selectedShape = shapeSetting.getValue();
         });
