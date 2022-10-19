@@ -65,8 +65,10 @@ public class DrawingProgram extends Application {
         ComboSetting toolSetting = new ComboSetting("Tool:", settingHeight, settingRatio);
         toolSetting.addValue(Tool.Draw);
         toolSetting.addValue(Tool.Select);
+        toolSetting.setOnAction(e -> {
+           tool = (Tool)toolSetting.getValue();
+        });
         properties.getChildren().add(toolSetting);
-
 
 
         ShapeSetting shapeSetting = new ShapeSetting("Shape: ", settingHeight, settingRatio);
