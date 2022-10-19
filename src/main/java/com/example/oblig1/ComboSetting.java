@@ -19,6 +19,9 @@ public class ComboSetting extends CustomSetting {
     public void setValue(int value){
         box.getSelectionModel().select(box.getItems().get(value));
     }
+    public void addValue(Object o){
+        box.getItems().add(o);
+    }
 
 
     public ComboSetting(String text, double height, double labelPercent){
@@ -26,15 +29,9 @@ public class ComboSetting extends CustomSetting {
 
         box = (ComboBox)control;
 
-        box.getItems().add(Rectangle.class);
-        box.getItems().add(Circle.class);
-        box.getItems().add(Ellipse.class);
-        box.getItems().add(Line.class);
-        box.getItems().add(Text.class);
-
-
-
-        setValue(0); // Maybe add this into an event instead, and run every time length is changed. Check if selected one is still there.
+        box.selectionModelProperty().addListener(e -> {
+            setValue(0);
+        });
     }
 
     public void setOnAction(EventHandler e){

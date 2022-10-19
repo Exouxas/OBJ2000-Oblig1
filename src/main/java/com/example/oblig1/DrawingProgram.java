@@ -55,16 +55,19 @@ public class DrawingProgram extends Application {
 
         GridPane leftSide = new GridPane();
         mainSeparator.setLeft(leftSide);
+        leftSide.getColumnConstraints().add(new ColumnConstraints(200));
 
 
         VBox properties = new VBox();
         leftSide.add(properties, 0, 0);
 
-        properties.getChildren().add(drawThickness);
-        properties.getChildren().add(textSize);
 
-        CustomSetting colorSetting = new CustomSetting("Color:", settingHeight, settingRatio, picker);
-        properties.getChildren().add(colorSetting);
+        ComboSetting toolSetting = new ComboSetting("Tool:", settingHeight, settingRatio);
+        toolSetting.addValue(Tool.Draw);
+        toolSetting.addValue(Tool.Select);
+        properties.getChildren().add(toolSetting);
+
+
 
         ShapeSetting shapeSetting = new ShapeSetting("Shape: ", settingHeight, settingRatio);
         shapeSetting.setOnAction(e -> {
@@ -72,15 +75,22 @@ public class DrawingProgram extends Application {
         });
         properties.getChildren().add(shapeSetting);
 
-        ComboBox toolSelector = new ComboBox();
-        toolSelector.getItems().add(Tool.Draw);
-        toolSelector.getItems().add(Tool.Select);
-        toolSelector.getSelectionModel().select(toolSelector.getItems().get(0));
-        CustomSetting toolSetting = new CustomSetting("Tool:", settingHeight, settingRatio, toolSelector);
-        properties.getChildren().add(toolSetting);
+
+        CustomSetting colorSetting = new CustomSetting("Color:", settingHeight, settingRatio, picker);
+        properties.getChildren().add(colorSetting);
 
 
-        leftSide.getColumnConstraints().add(new ColumnConstraints(200));
+        properties.getChildren().add(drawThickness);
+        // OR
+        properties.getChildren().add(textSize);
+
+
+
+
+
+
+
+
 
 
 
