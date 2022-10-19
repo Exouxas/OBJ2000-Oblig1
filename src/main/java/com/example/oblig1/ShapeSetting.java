@@ -14,11 +14,11 @@ public class ShapeSetting extends ComboSetting {
         super(text, height, labelPercent);
 
 
-        box.getItems().add(Rectangle.class);
-        box.getItems().add(Circle.class);
-        box.getItems().add(Ellipse.class);
-        box.getItems().add(Line.class);
-        box.getItems().add(Text.class);
+        addValue(Rectangle.class);
+        addValue(Circle.class);
+        addValue(Ellipse.class);
+        addValue(Line.class);
+        addValue(Text.class);
         this.setConverter(new StringConverter<Object>(){
             @Override
             public String toString(Object obj){
@@ -30,7 +30,5 @@ public class ShapeSetting extends ComboSetting {
                 return null;
             }
         });
-
-        setValue(0);
     }
 }

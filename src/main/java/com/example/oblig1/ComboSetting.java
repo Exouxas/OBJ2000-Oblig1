@@ -21,6 +21,7 @@ public class ComboSetting extends CustomSetting {
     }
     public void addValue(Object o){
         box.getItems().add(o);
+        setValue(0);
     }
 
 
@@ -28,10 +29,6 @@ public class ComboSetting extends CustomSetting {
         super(text, height, labelPercent, new ComboBox<Object>());
 
         box = (ComboBox)control;
-
-        box.selectionModelProperty().addListener(e -> {
-            setValue(0);
-        });
     }
 
     public void setOnAction(EventHandler e){
