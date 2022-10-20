@@ -19,4 +19,9 @@ public class DrawingTool extends Tool{
     public void released() {
 
     }
+
+    @Override
+    public String getName() {
+        return "Drawing Tool";
+    }
 }

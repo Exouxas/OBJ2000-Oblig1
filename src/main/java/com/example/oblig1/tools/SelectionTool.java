@@ -19,4 +19,9 @@ public class SelectionTool extends Tool{
     public void released() {
 
     }
+
+    @Override
+    public String getName() {
+        return "Selection Tool";
+    }
 }
