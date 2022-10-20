@@ -1,8 +1,16 @@
 package com.example.oblig1.tools;
 
+import com.example.oblig1.controls.CustomSetting;
+import com.example.oblig1.controls.NumberSetting;
+import com.example.oblig1.controls.ShapeSetting;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.layout.Pane;
+
 public class DrawingTool extends Tool{
-    public DrawingTool(){
-        super();
+    public DrawingTool(Pane interactiveArea, Pane properties, double settingHeight, double settingRatio){
+        super(interactiveArea, properties, settingHeight, settingRatio);
+
+
     }
 
     @Override

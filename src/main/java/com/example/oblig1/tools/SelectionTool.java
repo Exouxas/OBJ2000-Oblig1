@@ -1,8 +1,10 @@
 package com.example.oblig1.tools;
 
+import javafx.scene.layout.Pane;
+
 public class SelectionTool extends Tool{
-    public SelectionTool(){
-        super();
+    public SelectionTool(Pane interactiveArea, Pane properties, double settingHeight, double settingRatio){
+        super(interactiveArea, properties, settingHeight, settingRatio);
     }
 
     @Override
