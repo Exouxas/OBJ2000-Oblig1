@@ -1,7 +1,6 @@
 package com.example.oblig1;
 
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -12,6 +11,11 @@ public class DrawStructure {
     Random r = new Random();
 
 
+
+    private GridPane mainSeparator = new GridPane();
+    public GridPane getMainSeparator() {
+        return mainSeparator;
+    }
 
     private Pane drawArea = new Pane();
     public Pane getDrawArea() {
@@ -52,6 +56,17 @@ public class DrawStructure {
         this.settingHeight = settingHeight;
         this.settingWidth = settingWidth;
         this.settingRatio = settingRatio;
+
+
+        mainSeparator.getColumnConstraints().add(new ColumnConstraints(200));
+        ColumnConstraints cc = new ColumnConstraints();
+        cc.setPercentWidth(100);
+        mainSeparator.getColumnConstraints().add(cc);
+        mainSeparator.getColumnConstraints().add(new ColumnConstraints(200));
+        RowConstraints rc = new RowConstraints();
+        rc.setPercentHeight(100);
+        mainSeparator.getRowConstraints().add(rc);
+
 
         background.setFill(Color.WHITE);
         drawArea.getChildren().add(background);

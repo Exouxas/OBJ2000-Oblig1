@@ -28,19 +28,7 @@ public class DrawingProgram extends Application {
     @Override
     public void start(Stage stage){
         // Structure setup
-        GridPane mainSeparator = new GridPane();
-        mainSeparator.getColumnConstraints().add(new ColumnConstraints(200));
-        ColumnConstraints cc = new ColumnConstraints();
-        cc.setPercentWidth(100);
-        mainSeparator.getColumnConstraints().add(cc);
-        mainSeparator.getColumnConstraints().add(new ColumnConstraints(200));
-        RowConstraints rc = new RowConstraints();
-        rc.setPercentHeight(100);
-        mainSeparator.getRowConstraints().add(rc);
-
-
-
-        mainSeparator.add(drawStructure.getProperties(), 0, 0);
+        drawStructure.getMainSeparator().add(drawStructure.getProperties(), 0, 0);
         ComboSetting toolSetting = new ComboSetting("Tool:", drawStructure.getSettingHeight(), drawStructure.getSettingRatio());
         drawStructure.getProperties().getChildren().add(toolSetting);
         toolSetting.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
@@ -64,19 +52,19 @@ public class DrawingProgram extends Application {
 
 
 
-        mainSeparator.add(drawStructure.getDrawArea(), 1, 0);
+        drawStructure.getMainSeparator().add(drawStructure.getDrawArea(), 1, 0);
         drawStructure.getDrawArea().setOnMousePressed(e -> tool.pressed(e.getX(), e.getY()));
         drawStructure.getDrawArea().setOnMouseMoved(e -> tool.moved(e.getX(), e.getY()));
         drawStructure.getDrawArea().setOnMouseReleased(e -> tool.released());
 
 
 
-        mainSeparator.add(drawStructure.getInfoBox(), 2, 0);
+        drawStructure.getMainSeparator().add(drawStructure.getInfoBox(), 2, 0);
 
 
 
         // Window initiation
-        Scene scene = new Scene(mainSeparator, 1280, 720);
+        Scene scene = new Scene(drawStructure.getMainSeparator(), 1280, 720);
         stage.setTitle("Drawing program");
         stage.setScene(scene);
         stage.show();
