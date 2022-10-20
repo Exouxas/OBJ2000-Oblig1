@@ -17,7 +17,10 @@ public class DrawingTool extends Tool{
     public DrawingTool(Pane interactiveArea, Pane properties, double settingHeight, double settingRatio){
         super(interactiveArea, properties, settingHeight, settingRatio);
 
-
+        contextualProperties.getChildren().add(shapeSetting);
+        contextualProperties.getChildren().add(colorSetting);
+        contextualProperties.getChildren().add(drawThickness);
+        contextualProperties.getChildren().add(textSize);
     }
 
     @Override
