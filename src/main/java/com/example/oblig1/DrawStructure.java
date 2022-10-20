@@ -58,7 +58,7 @@ public class DrawStructure {
         this.settingRatio = settingRatio;
 
         // Left column
-        mainSeparator.getColumnConstraints().add(new ColumnConstraints(200));
+        mainSeparator.getColumnConstraints().add(new ColumnConstraints(settingWidth));
 
         // Middle column
         ColumnConstraints cc = new ColumnConstraints();
@@ -66,7 +66,7 @@ public class DrawStructure {
         mainSeparator.getColumnConstraints().add(cc);
 
         // Right column
-        mainSeparator.getColumnConstraints().add(new ColumnConstraints(200));
+        mainSeparator.getColumnConstraints().add(new ColumnConstraints(settingWidth));
 
         // height
         RowConstraints rc = new RowConstraints();
