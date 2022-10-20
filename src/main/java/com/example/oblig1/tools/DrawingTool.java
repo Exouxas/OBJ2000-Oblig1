@@ -7,6 +7,13 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.Pane;
 
 public class DrawingTool extends Tool{
+    ShapeSetting shapeSetting = new ShapeSetting("Shape: ", settingHeight, settingRatio);
+    NumberSetting drawThickness = new NumberSetting("Thickness:", settingHeight, settingRatio);
+    NumberSetting textSize = new NumberSetting("Text size:", settingHeight, settingRatio);
+    ColorPicker picker = new ColorPicker();
+    CustomSetting colorSetting = new CustomSetting("Color:", settingHeight, settingRatio, picker);
+
+
     public DrawingTool(Pane interactiveArea, Pane properties, double settingHeight, double settingRatio){
         super(interactiveArea, properties, settingHeight, settingRatio);
 
