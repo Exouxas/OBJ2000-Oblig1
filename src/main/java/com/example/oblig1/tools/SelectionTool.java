@@ -26,4 +26,9 @@ public class SelectionTool extends Tool{
     public String getName() {
         return "Selection Tool";
     }
+
+    @Override
+    protected void cancel() {
+
+    }
 }

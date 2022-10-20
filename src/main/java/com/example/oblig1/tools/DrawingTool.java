@@ -42,4 +42,9 @@ public class DrawingTool extends Tool{
     public String getName() {
         return "Drawing Tool";
     }
+
+    @Override
+    protected void cancel() {
+
+    }
 }

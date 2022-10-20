@@ -36,5 +36,9 @@ public abstract class Tool {
         if(propertiesRegion.getChildren().contains(contextualProperties)){
             propertiesRegion.getChildren().remove(contextualProperties);
         }
+
+        cancel();
     }
+
+    protected abstract void cancel();
 }
