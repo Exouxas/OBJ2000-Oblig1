@@ -1,13 +1,15 @@
 package com.example.oblig1.tools;
 
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Shape;
 
 public abstract class Tool {
     protected double settingHeight;
     protected double settingRatio;
     protected Pane interactiveArea;
-    protected Pane properties;
+    protected Pane propertiesRegion;
+    protected VBox contextualProperties = new VBox();
 
     public Shape selected;
 
@@ -15,7 +17,7 @@ public abstract class Tool {
         this.settingHeight = settingHeight;
         this.settingRatio = settingRatio;
         this.interactiveArea = interactiveArea;
-        this.properties = properties;
+        this.propertiesRegion = properties;
     }
 
     public abstract void pressed(double x, double y);
@@ -23,4 +25,16 @@ public abstract class Tool {
     public abstract void released();
 
     public abstract String getName();
+
+    public void select(){
+        if(!propertiesRegion.getChildren().contains(contextualProperties)){
+            propertiesRegion.getChildren().add(contextualProperties);
+        }
+    }
+
+    public void deselect(){
+        if(propertiesRegion.getChildren().contains(contextualProperties)){
+            propertiesRegion.getChildren().remove(contextualProperties);
+        }
+    }
 }
