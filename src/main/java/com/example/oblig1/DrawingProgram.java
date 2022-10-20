@@ -51,13 +51,14 @@ public class DrawingProgram extends Application {
 
 
         ComboSetting toolSetting = new ComboSetting("Tool:", settingHeight, settingRatio);
-        toolSetting.addValue(tools.get(0));
-        toolSetting.addValue(tools.get(1));
+        properties.getChildren().add(toolSetting);
         toolSetting.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
             tool = (Tool)newValue;
-            ((Tool)oldValue).deselect();
+            if(oldValue != null) {((Tool)oldValue).deselect();}
             ((Tool)newValue).select();
         });
+        toolSetting.addValue(tools.get(0));
+        toolSetting.addValue(tools.get(1));
         toolSetting.setConverter(new StringConverter<Object>(){
             @Override
             public String toString(Object obj){
@@ -69,7 +70,6 @@ public class DrawingProgram extends Application {
                 return null;
             }
         });
-        properties.getChildren().add(toolSetting);
 
 
 
