@@ -1,6 +1,9 @@
 package com.example.oblig1;
 
 import com.example.oblig1.controls.*;
+import com.example.oblig1.tools.DrawingTool;
+import com.example.oblig1.tools.SelectionTool;
+import com.example.oblig1.tools.Tool;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -8,29 +11,27 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DrawingProgram extends Application {
-    Group drawnShapes = new Group();
-    Pane drawArea = new Pane();
-    Tool tool = Tool.Draw;
-    Object selectedShape;
-
-
-    // Properties for drawing
+    // Settings
     double settingHeight = 25;
     double settingRatio = 40;
-    NumberSetting drawThickness = new NumberSetting("Thickness:", settingHeight, settingRatio);
-    NumberSetting textSize = new NumberSetting("Text size:", settingHeight, settingRatio);
-    ColorPicker picker = new ColorPicker();
 
-    // Current draw variables
-    boolean mouseDown = false;
-    double startX = 0;
-    double startY = 0;
-    double endX = 0;
-    double endY = 0;
+    // Structures
+    Pane drawArea = new Pane();
+    VBox properties = new VBox();
+
+    // Tools
+    ArrayList<Tool> tools = new ArrayList<Tool>(List.of(
+            new DrawingTool(drawArea, properties, settingHeight, settingRatio),
+            new SelectionTool(drawArea, properties, settingHeight, settingRatio)
+    ));
+    Tool tool = tools.get(0);
 
 
     @Override
@@ -38,57 +39,37 @@ public class DrawingProgram extends Application {
         // Structure setup
         BorderPane mainSeparator = new BorderPane();
 
-        drawArea.getChildren().add(drawnShapes);
         mainSeparator.setCenter(drawArea);
-        drawArea.setOnMousePressed(e -> {
-            mouseDown = true;
-            startX = e.getX();
-            startY = e.getY();
-        });
-        drawArea.setOnMouseReleased(e -> {mouseDown = false;});
-        drawArea.setOnMouseMoved(e -> {mouseMoving(e.getX(), e.getY());});
+        drawArea.setOnMousePressed(e -> tool.pressed(e.getX(), e.getY()));
+        drawArea.setOnMouseMoved(e -> tool.moved(e.getX(), e.getY()));
+        drawArea.setOnMouseReleased(e -> tool.released());
 
         GridPane leftSide = new GridPane();
         mainSeparator.setLeft(leftSide);
         leftSide.getColumnConstraints().add(new ColumnConstraints(200));
-
-
-        VBox properties = new VBox();
         leftSide.add(properties, 0, 0);
 
 
         ComboSetting toolSetting = new ComboSetting("Tool:", settingHeight, settingRatio);
-        toolSetting.addValue(Tool.Draw);
-        toolSetting.addValue(Tool.Select);
-        toolSetting.setOnAction(e -> {
-           tool = (Tool)toolSetting.getValue();
+        toolSetting.addValue(tools.get(0));
+        toolSetting.addValue(tools.get(1));
+        toolSetting.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
+            tool = (Tool)newValue;
+            ((Tool)oldValue).deselect();
+            ((Tool)newValue).select();
+        });
+        toolSetting.setConverter(new StringConverter<Object>(){
+            @Override
+            public String toString(Object obj){
+                return ((Tool)obj).getName();
+            }
+
+            @Override
+            public Object fromString(String s){
+                return null;
+            }
         });
         properties.getChildren().add(toolSetting);
-
-
-        ShapeSetting shapeSetting = new ShapeSetting("Shape: ", settingHeight, settingRatio);
-        shapeSetting.setOnAction(e -> {
-            selectedShape = shapeSetting.getValue();
-        });
-        properties.getChildren().add(shapeSetting);
-
-
-        CustomSetting colorSetting = new CustomSetting("Color:", settingHeight, settingRatio, picker);
-        properties.getChildren().add(colorSetting);
-
-
-        properties.getChildren().add(drawThickness);
-        // OR
-        properties.getChildren().add(textSize);
-
-
-
-
-
-
-
-
-
 
 
 
@@ -127,26 +108,8 @@ public class DrawingProgram extends Application {
         */
     }
 
-    private void mouseMoving(double x, double y){
-        if(mouseDown){
-            switch(tool){
-                case Select:
-                    break;
-                case Draw:
-                    if(selectedShape.equals(Rectangle.class)){
-                        
-                    }
-                    break;
-            }
-        }
-    }
 
     public static void main(String[] args) {
         launch();
-    }
-
-    enum Tool {
-        Draw,
-        Select
     }
 }
