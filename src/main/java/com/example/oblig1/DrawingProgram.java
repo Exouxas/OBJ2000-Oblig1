@@ -7,11 +7,15 @@ import com.example.oblig1.tools.Tool;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class DrawingProgram extends Application {
     // Settings
@@ -20,6 +24,7 @@ public class DrawingProgram extends Application {
 
     // Structures
     Pane drawArea = new Pane();
+    Rectangle background = new Rectangle();
     VBox properties = new VBox();
 
     // Tools
@@ -29,6 +34,7 @@ public class DrawingProgram extends Application {
     ));
     Tool tool = tools.get(0);
 
+    Random r = new Random();
 
     @Override
     public void start(Stage stage){
@@ -76,7 +82,25 @@ public class DrawingProgram extends Application {
         stage.show();
 
 
+        background.setFill(Color.WHITE);
+        drawArea.getChildren().add(background);
+        background.setWidth(drawArea.getWidth());
+        background.setHeight(drawArea.getHeight());
+        drawArea.widthProperty().addListener((e, oldValue, newValue) -> {
+            background.setWidth((double)newValue);
+        });
+        drawArea.heightProperty().addListener((e, oldValue, newValue) -> {
+            background.setHeight((double)newValue);
+        });
 
+        background.setOnMousePressed(e1 -> {
+            Circle c = new Circle();
+            drawArea.getChildren().add(c);
+            c.setCenterX(drawArea.getWidth() * r.nextDouble());
+            c.setCenterY(drawArea.getHeight() * r.nextDouble());
+            c.setRadius(10);
+            c.setOnMouseClicked(e2 -> {c.setFill(Color.BLUE);});
+        });
 
         /*
         Circle c1 = new Circle();
