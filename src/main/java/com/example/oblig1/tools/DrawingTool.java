@@ -21,21 +21,23 @@ public class DrawingTool extends Tool{
         contextualProperties.getChildren().add(colorSetting);
         contextualProperties.getChildren().add(drawThickness);
         contextualProperties.getChildren().add(textSize);
+
+        // TODO: Add event for selection of shape to alter "contextualProperties"
     }
 
     @Override
     public void pressed(double x, double y) {
-
+        // TODO: Draw depending on shape selected
     }
 
     @Override
     public void moved(double x, double y) {
-
+        // TODO: Draw depending on shape selected
     }
 
     @Override
     public void released() {
-
+        // TODO: Draw depending on shape selected
     }
 
     @Override
@@ -45,6 +47,6 @@ public class DrawingTool extends Tool{
 
     @Override
     protected void cancel() {
-
+        // TODO: Cancel drawings in progress in a neat and tidy way
     }
 }
