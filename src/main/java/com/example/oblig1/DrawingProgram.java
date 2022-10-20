@@ -5,15 +5,11 @@ import com.example.oblig1.tools.DrawingTool;
 import com.example.oblig1.tools.SelectionTool;
 import com.example.oblig1.tools.Tool;
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +23,7 @@ public class DrawingProgram extends Application {
     VBox properties = new VBox();
 
     // Tools
-    ArrayList<Tool> tools = new ArrayList<Tool>(List.of(
+    ArrayList<Tool> tools = new ArrayList<>(List.of(
             new DrawingTool(drawArea, properties, settingHeight, settingRatio),
             new SelectionTool(drawArea, properties, settingHeight, settingRatio)
     ));
@@ -35,7 +31,7 @@ public class DrawingProgram extends Application {
 
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage){
         // Structure setup
         BorderPane mainSeparator = new BorderPane();
 
@@ -59,7 +55,7 @@ public class DrawingProgram extends Application {
         });
         toolSetting.addValue(tools.get(0));
         toolSetting.addValue(tools.get(1));
-        toolSetting.setConverter(new StringConverter<Object>(){
+        toolSetting.setConverter(new StringConverter<>(){
             @Override
             public String toString(Object obj){
                 return ((Tool)obj).getName();
