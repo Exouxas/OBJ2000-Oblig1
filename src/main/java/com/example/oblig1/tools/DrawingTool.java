@@ -1,10 +1,10 @@
 package com.example.oblig1.tools;
 
+import com.example.oblig1.DrawStructure;
 import com.example.oblig1.controls.CustomSetting;
 import com.example.oblig1.controls.NumberSetting;
 import com.example.oblig1.controls.ShapeSetting;
 import javafx.scene.control.ColorPicker;
-import javafx.scene.layout.Pane;
 
 public class DrawingTool extends Tool{
     ShapeSetting shapeSetting = new ShapeSetting("Shape: ", settingHeight, settingRatio);
@@ -14,8 +14,8 @@ public class DrawingTool extends Tool{
     CustomSetting colorSetting = new CustomSetting("Color:", settingHeight, settingRatio, picker);
 
 
-    public DrawingTool(Pane interactiveArea, Pane properties, Pane infoBox, double settingHeight, double settingRatio){
-        super(interactiveArea, properties, infoBox, settingHeight, settingRatio);
+    public DrawingTool(DrawStructure drawStructure, double settingHeight, double settingRatio){
+        super(drawStructure, settingHeight, settingRatio);
 
         contextualProperties.getChildren().add(shapeSetting);
         contextualProperties.getChildren().add(colorSetting);

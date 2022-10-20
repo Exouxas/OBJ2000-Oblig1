@@ -7,15 +7,11 @@ import com.example.oblig1.tools.Tool;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class DrawingProgram extends Application {
     // Settings
@@ -23,38 +19,34 @@ public class DrawingProgram extends Application {
     double settingRatio = 40;
 
     // Structures
-    Pane drawArea = new Pane();
-    Rectangle background = new Rectangle();
-    VBox properties = new VBox();
-    VBox infoBox = new VBox();
+    DrawStructure drawStructure = new DrawStructure();
 
     // Tools
     ArrayList<Tool> tools = new ArrayList<>(List.of(
-            new DrawingTool(drawArea, properties, infoBox, settingHeight, settingRatio),
-            new SelectionTool(drawArea, properties, infoBox, settingHeight, settingRatio)
+            new DrawingTool(drawStructure, settingHeight, settingRatio),
+            new SelectionTool(drawStructure, settingHeight, settingRatio)
     ));
     Tool tool = tools.get(0);
 
-    Random r = new Random();
 
     @Override
     public void start(Stage stage){
         // Structure setup
-        BorderPane mainSeparator = new BorderPane();
-
-        mainSeparator.setCenter(drawArea);
-        drawArea.setOnMousePressed(e -> tool.pressed(e.getX(), e.getY()));
-        drawArea.setOnMouseMoved(e -> tool.moved(e.getX(), e.getY()));
-        drawArea.setOnMouseReleased(e -> tool.released());
-
-        GridPane leftSide = new GridPane();
-        mainSeparator.setLeft(leftSide);
-        leftSide.getColumnConstraints().add(new ColumnConstraints(200));
-        leftSide.add(properties, 0, 0);
+        GridPane mainSeparator = new GridPane();
+        mainSeparator.getColumnConstraints().add(new ColumnConstraints(200));
+        ColumnConstraints cc = new ColumnConstraints();
+        cc.setPercentWidth(100);
+        mainSeparator.getColumnConstraints().add(cc);
+        mainSeparator.getColumnConstraints().add(new ColumnConstraints(200));
+        RowConstraints rc = new RowConstraints();
+        rc.setPercentHeight(100);
+        mainSeparator.getRowConstraints().add(rc);
 
 
+
+        mainSeparator.add(drawStructure.getProperties(), 0, 0);
         ComboSetting toolSetting = new ComboSetting("Tool:", settingHeight, settingRatio);
-        properties.getChildren().add(toolSetting);
+        drawStructure.getProperties().getChildren().add(toolSetting);
         toolSetting.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
             tool = (Tool)newValue;
             if(oldValue != null) {((Tool)oldValue).deselect();}
@@ -75,7 +67,15 @@ public class DrawingProgram extends Application {
         });
 
 
-        mainSeparator.setRight(infoBox);
+
+        mainSeparator.add(drawStructure.getDrawArea(), 1, 0);
+        drawStructure.getDrawArea().setOnMousePressed(e -> tool.pressed(e.getX(), e.getY()));
+        drawStructure.getDrawArea().setOnMouseMoved(e -> tool.moved(e.getX(), e.getY()));
+        drawStructure.getDrawArea().setOnMouseReleased(e -> tool.released());
+
+
+
+        mainSeparator.add(drawStructure.getInfoBox(), 2, 0);
 
 
 
@@ -86,25 +86,7 @@ public class DrawingProgram extends Application {
         stage.show();
 
 
-        background.setFill(Color.WHITE);
-        drawArea.getChildren().add(background);
-        background.setWidth(drawArea.getWidth());
-        background.setHeight(drawArea.getHeight());
-        drawArea.widthProperty().addListener((e, oldValue, newValue) -> {
-            background.setWidth((double)newValue);
-        });
-        drawArea.heightProperty().addListener((e, oldValue, newValue) -> {
-            background.setHeight((double)newValue);
-        });
 
-        background.setOnMousePressed(e1 -> {
-            Circle c = new Circle();
-            drawArea.getChildren().add(c);
-            c.setCenterX(drawArea.getWidth() * r.nextDouble());
-            c.setCenterY(drawArea.getHeight() * r.nextDouble());
-            c.setRadius(10);
-            c.setOnMouseClicked(e2 -> {c.setFill(Color.BLUE);});
-        });
 
         /*
         Circle c1 = new Circle();
