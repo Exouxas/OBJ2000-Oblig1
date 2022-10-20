@@ -2,6 +2,7 @@ package com.example.oblig1.controls;
 
 import javafx.event.EventHandler;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.SingleSelectionModel;
 import javafx.util.StringConverter;
 
 public class ComboSetting extends CustomSetting {
@@ -29,6 +30,8 @@ public class ComboSetting extends CustomSetting {
     public void setOnAction(EventHandler e){
         box.setOnAction(e);
     }
+
+    public SingleSelectionModel<Object> getSelectionModel(){return box.getSelectionModel();}
 
     public void setConverter(StringConverter<Object> converter){
         box.setConverter(converter);
