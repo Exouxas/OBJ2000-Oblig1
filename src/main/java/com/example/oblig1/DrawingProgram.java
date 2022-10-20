@@ -26,11 +26,12 @@ public class DrawingProgram extends Application {
     Pane drawArea = new Pane();
     Rectangle background = new Rectangle();
     VBox properties = new VBox();
+    VBox infoBox = new VBox();
 
     // Tools
     ArrayList<Tool> tools = new ArrayList<>(List.of(
-            new DrawingTool(drawArea, properties, settingHeight, settingRatio),
-            new SelectionTool(drawArea, properties, settingHeight, settingRatio)
+            new DrawingTool(drawArea, properties, infoBox, settingHeight, settingRatio),
+            new SelectionTool(drawArea, properties, infoBox, settingHeight, settingRatio)
     ));
     Tool tool = tools.get(0);
 
@@ -72,6 +73,9 @@ public class DrawingProgram extends Application {
                 return null;
             }
         });
+
+
+        mainSeparator.setRight(infoBox);
 
 
 

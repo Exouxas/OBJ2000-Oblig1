@@ -14,8 +14,8 @@ public class DrawingTool extends Tool{
     CustomSetting colorSetting = new CustomSetting("Color:", settingHeight, settingRatio, picker);
 
 
-    public DrawingTool(Pane interactiveArea, Pane properties, double settingHeight, double settingRatio){
-        super(interactiveArea, properties, settingHeight, settingRatio);
+    public DrawingTool(Pane interactiveArea, Pane properties, Pane infoBox, double settingHeight, double settingRatio){
+        super(interactiveArea, properties, infoBox, settingHeight, settingRatio);
 
         contextualProperties.getChildren().add(shapeSetting);
         contextualProperties.getChildren().add(colorSetting);

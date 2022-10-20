@@ -10,14 +10,17 @@ public abstract class Tool {
     protected Pane interactiveArea;
     protected Pane propertiesRegion;
     protected VBox contextualProperties = new VBox();
+    protected Pane infoBox;
+    protected VBox contextualInfo = new VBox();
 
     public Shape selected;
 
-    public Tool(Pane interactiveArea, Pane properties, double settingHeight, double settingRatio){
+    public Tool(Pane interactiveArea, Pane properties, Pane infoBox, double settingHeight, double settingRatio){
         this.settingHeight = settingHeight;
         this.settingRatio = settingRatio;
         this.interactiveArea = interactiveArea;
         this.propertiesRegion = properties;
+        this.infoBox = infoBox;
     }
 
     public abstract void pressed(double x, double y);
@@ -30,12 +33,15 @@ public abstract class Tool {
         if(!propertiesRegion.getChildren().contains(contextualProperties)){
             propertiesRegion.getChildren().add(contextualProperties);
         }
+
+        if(!infoBox.getChildren().contains(contextualInfo)){
+            infoBox.getChildren().add(contextualInfo);
+        }
     }
 
     public void deselect(){
-        if(propertiesRegion.getChildren().contains(contextualProperties)){
-            propertiesRegion.getChildren().remove(contextualProperties);
-        }
+        propertiesRegion.getChildren().remove(contextualProperties);
+        infoBox.getChildren().remove(contextualInfo);
 
         cancel();
     }
