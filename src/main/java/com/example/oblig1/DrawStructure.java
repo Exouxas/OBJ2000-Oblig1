@@ -33,7 +33,26 @@ public class DrawStructure {
         return infoBox;
     }
 
-    public DrawStructure(){
+    private double settingHeight;
+    public double getSettingHeight() {
+        return settingHeight;
+    }
+
+    private double settingWidth;
+    public double getSettingWidth() {
+        return settingWidth;
+    }
+
+    private double settingRatio;
+    public double getSettingRatio() {
+        return settingRatio;
+    }
+
+    public DrawStructure(double settingHeight, double settingWidth, double settingRatio){
+        this.settingHeight = settingHeight;
+        this.settingWidth = settingWidth;
+        this.settingRatio = settingRatio;
+
         background.setFill(Color.WHITE);
         drawArea.getChildren().add(background);
         background.setWidth(drawArea.getWidth());

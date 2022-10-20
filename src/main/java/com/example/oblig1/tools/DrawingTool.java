@@ -7,15 +7,15 @@ import com.example.oblig1.controls.ShapeSetting;
 import javafx.scene.control.ColorPicker;
 
 public class DrawingTool extends Tool{
-    ShapeSetting shapeSetting = new ShapeSetting("Shape: ", settingHeight, settingRatio);
-    NumberSetting drawThickness = new NumberSetting("Thickness:", settingHeight, settingRatio);
-    NumberSetting textSize = new NumberSetting("Text size:", settingHeight, settingRatio);
+    ShapeSetting shapeSetting = new ShapeSetting("Shape: ", drawStructure.getSettingHeight(), drawStructure.getSettingRatio());
+    NumberSetting drawThickness = new NumberSetting("Thickness:", drawStructure.getSettingHeight(), drawStructure.getSettingRatio());
+    NumberSetting textSize = new NumberSetting("Text size:", drawStructure.getSettingHeight(), drawStructure.getSettingRatio());
     ColorPicker picker = new ColorPicker();
-    CustomSetting colorSetting = new CustomSetting("Color:", settingHeight, settingRatio, picker);
+    CustomSetting colorSetting = new CustomSetting("Color:", drawStructure.getSettingHeight(), drawStructure.getSettingRatio(), picker);
 
 
-    public DrawingTool(DrawStructure drawStructure, double settingHeight, double settingRatio){
-        super(drawStructure, settingHeight, settingRatio);
+    public DrawingTool(DrawStructure drawStructure){
+        super(drawStructure);
 
         contextualProperties.getChildren().add(shapeSetting);
         contextualProperties.getChildren().add(colorSetting);

@@ -14,17 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DrawingProgram extends Application {
-    // Settings
-    double settingHeight = 25;
-    double settingRatio = 40;
-
     // Structures
-    DrawStructure drawStructure = new DrawStructure();
+    DrawStructure drawStructure = new DrawStructure(25, 200, 40);
 
     // Tools
     ArrayList<Tool> tools = new ArrayList<>(List.of(
-            new DrawingTool(drawStructure, settingHeight, settingRatio),
-            new SelectionTool(drawStructure, settingHeight, settingRatio)
+            new DrawingTool(drawStructure),
+            new SelectionTool(drawStructure)
     ));
     Tool tool = tools.get(0);
 
@@ -45,7 +41,7 @@ public class DrawingProgram extends Application {
 
 
         mainSeparator.add(drawStructure.getProperties(), 0, 0);
-        ComboSetting toolSetting = new ComboSetting("Tool:", settingHeight, settingRatio);
+        ComboSetting toolSetting = new ComboSetting("Tool:", drawStructure.getSettingHeight(), drawStructure.getSettingRatio());
         drawStructure.getProperties().getChildren().add(toolSetting);
         toolSetting.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
             tool = (Tool)newValue;

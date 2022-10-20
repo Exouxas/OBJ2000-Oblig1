@@ -3,8 +3,8 @@ package com.example.oblig1.tools;
 import com.example.oblig1.DrawStructure;
 
 public class SelectionTool extends Tool{
-    public SelectionTool(DrawStructure drawStructure, double settingHeight, double settingRatio){
-        super(drawStructure, settingHeight, settingRatio);
+    public SelectionTool(DrawStructure drawStructure){
+        super(drawStructure);
     }
 
     @Override

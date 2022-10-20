@@ -5,8 +5,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Shape;
 
 public abstract class Tool {
-    protected double settingHeight;
-    protected double settingRatio;
     protected DrawStructure drawStructure;
 
     protected VBox contextualProperties = new VBox();
@@ -14,9 +12,7 @@ public abstract class Tool {
 
     public Shape selected;
 
-    public Tool(DrawStructure drawStructure, double settingHeight, double settingRatio){
-        this.settingHeight = settingHeight;
-        this.settingRatio = settingRatio;
+    public Tool(DrawStructure drawStructure){
         this.drawStructure = drawStructure;
     }
 
