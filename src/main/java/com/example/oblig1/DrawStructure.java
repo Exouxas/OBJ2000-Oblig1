@@ -62,7 +62,7 @@ public class DrawStructure {
 
         // Middle column
         ColumnConstraints cc = new ColumnConstraints();
-        cc.setPercentWidth(100);
+        cc.setHgrow(Priority.ALWAYS);
         mainSeparator.getColumnConstraints().add(cc);
 
         // Right column
@@ -92,9 +92,9 @@ public class DrawStructure {
         background.setOnMousePressed(e1 -> {
             Circle c = new Circle();
             drawArea.getChildren().add(c);
+            c.setRadius(100);
             c.setCenterX(drawArea.getWidth() * r.nextDouble());
             c.setCenterY(drawArea.getHeight() * r.nextDouble());
-            c.setRadius(100);
             c.setOnMouseClicked(e2 -> {c.setFill(Color.BLUE);});
         });
     }
