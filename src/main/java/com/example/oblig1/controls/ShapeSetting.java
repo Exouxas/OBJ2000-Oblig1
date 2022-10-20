@@ -1,7 +1,5 @@
-package com.example.oblig1;
+package com.example.oblig1.controls;
 
-import javafx.event.EventHandler;
-import javafx.scene.control.ComboBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;

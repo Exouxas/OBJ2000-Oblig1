@@ -5,4 +5,6 @@ module com.example.oblig1 {
 
     opens com.example.oblig1 to javafx.fxml;
     exports com.example.oblig1;
+    exports com.example.oblig1.controls;
+    opens com.example.oblig1.controls to javafx.fxml;
 }

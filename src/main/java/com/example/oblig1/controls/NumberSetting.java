@@ -1,4 +1,4 @@
-package com.example.oblig1;
+package com.example.oblig1.controls;
 
 import javafx.scene.control.TextField;
 
