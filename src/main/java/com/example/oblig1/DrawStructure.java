@@ -57,26 +57,36 @@ public class DrawStructure {
         this.settingWidth = settingWidth;
         this.settingRatio = settingRatio;
 
-
+        // Left column
         mainSeparator.getColumnConstraints().add(new ColumnConstraints(200));
+
+        // Middle column
         ColumnConstraints cc = new ColumnConstraints();
         cc.setPercentWidth(100);
         mainSeparator.getColumnConstraints().add(cc);
+
+        // Right column
         mainSeparator.getColumnConstraints().add(new ColumnConstraints(200));
+
+        // height
         RowConstraints rc = new RowConstraints();
         rc.setPercentHeight(100);
         mainSeparator.getRowConstraints().add(rc);
 
 
+        // Clipping
+        Rectangle clipRect = new Rectangle();
+        drawArea.setClip(clipRect);
+
         background.setFill(Color.WHITE);
         drawArea.getChildren().add(background);
-        background.setWidth(drawArea.getWidth());
-        background.setHeight(drawArea.getHeight());
         drawArea.widthProperty().addListener((e, oldValue, newValue) -> {
             background.setWidth((double)newValue);
+            clipRect.setWidth((double)newValue);
         });
         drawArea.heightProperty().addListener((e, oldValue, newValue) -> {
             background.setHeight((double)newValue);
+            clipRect.setHeight((double)newValue);
         });
 
         background.setOnMousePressed(e1 -> {
@@ -84,7 +94,7 @@ public class DrawStructure {
             drawArea.getChildren().add(c);
             c.setCenterX(drawArea.getWidth() * r.nextDouble());
             c.setCenterY(drawArea.getHeight() * r.nextDouble());
-            c.setRadius(10);
+            c.setRadius(100);
             c.setOnMouseClicked(e2 -> {c.setFill(Color.BLUE);});
         });
     }
