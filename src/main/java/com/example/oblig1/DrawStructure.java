@@ -89,13 +89,6 @@ public class DrawStructure {
             clipRect.setHeight((double)newValue);
         });
 
-        background.setOnMousePressed(e1 -> {
-            Circle c = new Circle();
-            drawArea.getChildren().add(c);
-            c.setRadius(100);
-            c.setCenterX(drawArea.getWidth() * r.nextDouble());
-            c.setCenterY(drawArea.getHeight() * r.nextDouble());
-            c.setOnMouseClicked(e2 -> {c.setFill(Color.BLUE);});
-        });
+
     }
 }
