@@ -16,6 +16,11 @@ public class DrawableLine extends Line implements IDrawable{
     }
 
     @Override
+    public String getName(){
+        return "Line";
+    }
+
+    @Override
     public Point2D getStart() {
         return startPos;
     }

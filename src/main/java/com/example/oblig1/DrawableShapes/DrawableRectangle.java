@@ -16,6 +16,11 @@ public class DrawableRectangle extends Rectangle implements IDrawable{
     }
 
     @Override
+    public String getName(){
+        return "Rectangle";
+    }
+
+    @Override
     public Point2D getStart() {
         return startPos;
     }

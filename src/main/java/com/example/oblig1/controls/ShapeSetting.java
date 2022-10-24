@@ -1,9 +1,6 @@
 package com.example.oblig1.controls;
 
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Ellipse;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
+import com.example.oblig1.DrawableShapes.*;
 import javafx.scene.text.Text;
 import javafx.util.StringConverter;
 
@@ -12,15 +9,15 @@ public class ShapeSetting extends ComboSetting {
         super(text, height, labelPercent);
 
 
-        addValue(Rectangle.class);
-        addValue(Circle.class);
-        addValue(Ellipse.class);
-        addValue(Line.class);
-        addValue(Text.class);
+        addValue(DrawableRectangle.class);
+        addValue(DrawableCircle.class);
+        addValue(DrawableEllipse.class);
+        addValue(DrawableLine.class);
+        addValue(DrawableText.class);
         this.setConverter(new StringConverter<Object>(){
             @Override
             public String toString(Object obj){
-                return ((Class)obj).getSimpleName();
+                return ((IDrawable)obj).getName();
             }
 
             @Override

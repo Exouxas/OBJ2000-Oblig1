@@ -16,6 +16,11 @@ public class DrawableEllipse extends Ellipse implements IDrawable{
     }
 
     @Override
+    public String getName(){
+        return "Ellipse";
+    }
+
+    @Override
     public Point2D getStart() {
         return startPos;
     }

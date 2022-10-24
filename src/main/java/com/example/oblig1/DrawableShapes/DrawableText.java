@@ -16,6 +16,11 @@ public class DrawableText extends Text implements IDrawable{
     }
 
     @Override
+    public String getName(){
+        return "Text";
+    }
+
+    @Override
     public Point2D getStart() {
         return startPos;
     }

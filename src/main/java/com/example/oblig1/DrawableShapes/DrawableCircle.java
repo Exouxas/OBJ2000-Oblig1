@@ -16,6 +16,11 @@ public class DrawableCircle extends Circle implements IDrawable{
     }
 
     @Override
+    public String getName(){
+        return "Circle";
+    }
+
+    @Override
     public Point2D getStart() {
         return startPos;
     }

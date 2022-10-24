@@ -4,6 +4,12 @@ import javafx.geometry.Point2D;
 
 public interface IDrawable {
     /**
+     * Gets the name of the shape.
+     * @return Name
+     */
+    String getName();
+
+    /**
      * Gets the starting position of a drawn shape.
      * @return Starting position
      */
