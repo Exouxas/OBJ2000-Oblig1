@@ -60,6 +60,9 @@ public class DrawingTool extends Tool{
 
     @Override
     protected void cancel() {
-        // TODO: Cancel drawings in progress in a neat and tidy way
+        if(currentShape != null){
+            drawStructure.getDrawArea().getChildren().remove((Shape)currentShape);
+            currentShape = null;
+        }
     }
 }
