@@ -2,6 +2,7 @@ package com.example.oblig1.tools;
 
 import com.example.oblig1.DrawStructure;
 import com.example.oblig1.DrawableShapes.IDrawable;
+import com.example.oblig1.DrawableShapes.NamedDrawable;
 import com.example.oblig1.controls.CustomSetting;
 import com.example.oblig1.controls.NumberSetting;
 import com.example.oblig1.controls.ShapeSetting;
@@ -33,7 +34,7 @@ public class DrawingTool extends Tool{
     @Override
     public void pressed(double x, double y) {
         Object selection = shapeSetting.getSelectionModel().getSelectedItem();
-        currentShape = ((IDrawable)selection).factory();
+        currentShape = ((NamedDrawable)selection).getDrawable().factory();
 
         // Hurts a little to do it like this, but sometimes you just have to be forceful.
         drawStructure.getDrawArea().getChildren().add((Shape)currentShape);

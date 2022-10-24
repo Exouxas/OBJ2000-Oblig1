@@ -8,15 +8,16 @@ public class ShapeSetting extends ComboSetting {
         super(text, height, labelPercent);
 
 
-        addValue(DrawableRectangle.class);
-        addValue(DrawableCircle.class);
-        addValue(DrawableEllipse.class);
-        addValue(DrawableLine.class);
-        addValue(DrawableText.class);
+        addValue(new NamedDrawable(new DrawableRectangle()));
+        addValue(new NamedDrawable(new DrawableCircle()));
+        addValue(new NamedDrawable(new DrawableEllipse()));
+        addValue(new NamedDrawable(new DrawableLine()));
+        addValue(new NamedDrawable(new DrawableText()));
+
         this.setConverter(new StringConverter<Object>(){
             @Override
             public String toString(Object obj){
-                return ((IDrawable)obj).getName();
+                return ((NamedDrawable)obj).getName();
             }
 
             @Override
