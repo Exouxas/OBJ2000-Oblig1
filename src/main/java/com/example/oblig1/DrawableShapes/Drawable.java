@@ -1,5 +1,5 @@
 package com.example.oblig1.DrawableShapes;
 
-public class Drawable implements IMoveable, ISelectable {
+public abstract class Drawable implements IMoveable, ISelectable {
 
 }
