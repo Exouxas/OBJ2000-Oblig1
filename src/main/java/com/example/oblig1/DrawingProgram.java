@@ -66,34 +66,6 @@ public class DrawingProgram extends Application {
         stage.setTitle("Drawing program");
         stage.setScene(scene);
         stage.show();
-
-
-
-
-        /*
-        Circle c1 = new Circle();
-        Circle c2 = new Circle();
-
-        c1.setCenterX(scene.getWidth()/3);
-        c2.setCenterX((scene.getWidth()/3)+50);
-
-        c1.setCenterY(scene.getHeight()/2);
-        c2.setCenterY(scene.getHeight()/2);
-
-        c1.setRadius(50);
-        c2.setRadius(50);
-
-
-        c2.setFill(Color.TRANSPARENT);
-        c2.setStroke(Color.RED);
-        c2.setStrokeWidth(10);
-
-        drawnShapes.getChildren().add(c1);
-        drawnShapes.getChildren().add(c2);
-
-        c1.setOnMouseClicked(e -> {c1.setFill(Color.BLUE);});
-        c2.setOnMouseClicked(e -> {c2.setFill(Color.BLUE);});
-        */
     }
 
 
