@@ -9,6 +9,8 @@ public class DrawableRectangle extends Rectangle implements IDrawable{
 
 
     public DrawableRectangle(){
+        super();
+
         startPos = new Point2D(0, 0);
         endPos = new Point2D(0, 0);
     }
