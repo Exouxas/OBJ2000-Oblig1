@@ -27,4 +27,30 @@ public interface IDrawable {
      * @param point Ending position
      */
     void setEnd(Point2D point);
+
+
+    /**
+     * Gets the position of the shape. By default, gets the start position.
+     * @return Position
+     */
+    default Point2D getPosition(){
+        return getStart();
+    }
+
+    /**
+     * Sets the position of the shape. By default, translates both the start and end point equally.
+     * @param position Position
+     */
+    default void setPosition(Point2D position){
+        setEnd(getEnd().subtract(getStart()).add(position)); // Translate end equally
+        setStart(position);
+    }
+
+    /**
+     * Move the shape a direction.
+     * @param magnitude Direction and magnitude
+     */
+    default void translate(Point2D magnitude){
+        setPosition(getPosition().add(magnitude));
+    }
 }

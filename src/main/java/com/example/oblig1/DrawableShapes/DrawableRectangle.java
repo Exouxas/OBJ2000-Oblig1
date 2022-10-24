@@ -3,7 +3,7 @@ package com.example.oblig1.DrawableShapes;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Rectangle;
 
-public class DrawableRectangle extends Rectangle implements IMoveable, IDrawable{
+public class DrawableRectangle extends Rectangle implements IDrawable{
     private Point2D startPos;
     private Point2D endPos;
 
@@ -11,16 +11,6 @@ public class DrawableRectangle extends Rectangle implements IMoveable, IDrawable
     public DrawableRectangle(){
         startPos = new Point2D(0, 0);
         endPos = new Point2D(0, 0);
-    }
-
-    @Override
-    public Point2D getPosition() {
-        return getStart();
-    }
-
-    @Override
-    public void setPosition(Point2D position) {
-        setStart(position);
     }
 
     @Override
