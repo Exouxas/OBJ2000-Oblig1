@@ -1,6 +1,5 @@
 package com.example.oblig1.controls;
 
-import javafx.event.EventHandler;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;

@@ -1,7 +1,6 @@
 package com.example.oblig1.controls;
 
 import com.example.oblig1.DrawableShapes.*;
-import javafx.scene.text.Text;
 import javafx.util.StringConverter;
 
 public class ShapeSetting extends ComboSetting {
