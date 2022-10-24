@@ -38,6 +38,11 @@ public class DrawableCircle extends Circle implements IDrawable{
     }
 
     private void recalculate(){
+        // Set position
+        setCenterX(startPos.getX());
+        setCenterY(startPos.getY());
 
+        // Set radius
+        setRadius(startPos.distance(endPos));
     }
 }
