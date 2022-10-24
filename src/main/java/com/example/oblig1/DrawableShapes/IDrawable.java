@@ -59,4 +59,10 @@ public interface IDrawable {
     default void translate(Point2D magnitude){
         setPosition(getPosition().add(magnitude));
     }
+
+    /**
+     * Basic factory method.
+     * @return Instance of object
+     */
+    IDrawable factory();
 }
