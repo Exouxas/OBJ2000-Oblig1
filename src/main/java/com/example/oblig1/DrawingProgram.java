@@ -53,9 +53,8 @@ public class DrawingProgram extends Application {
 
         drawStructure.getMainSeparator().add(drawStructure.getDrawArea(), 1, 0);
         drawStructure.getDrawArea().setOnMousePressed(e -> tool.pressed(e.getX(), e.getY()));
-        drawStructure.getDrawArea().setOnMouseMoved(e -> tool.moved(e.getX(), e.getY()));
+        drawStructure.getDrawArea().setOnMouseDragged(e -> tool.moved(e.getX(), e.getY()));
         drawStructure.getDrawArea().setOnMouseReleased(e -> tool.released());
-
 
 
         drawStructure.getMainSeparator().add(drawStructure.getInfoBox(), 2, 0);
