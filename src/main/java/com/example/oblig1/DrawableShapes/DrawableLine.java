@@ -38,6 +38,9 @@ public class DrawableLine extends Line implements IDrawable{
     }
 
     private void recalculate(){
-
+        setStartX(startPos.getX());
+        setStartY(startPos.getY());
+        setEndX(endPos.getX());
+        setEndY(endPos.getY());
     }
 }
