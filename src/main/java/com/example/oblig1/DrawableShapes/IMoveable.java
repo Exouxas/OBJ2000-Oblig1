@@ -9,5 +9,5 @@ public interface IMoveable {
 
     default void translate(Point2D magnitude){
         setPosition(getPosition().add(magnitude));
-    };
+    }
 }
