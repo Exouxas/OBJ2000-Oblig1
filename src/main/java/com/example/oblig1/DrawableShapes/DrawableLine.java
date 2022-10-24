@@ -42,6 +42,10 @@ public class DrawableLine extends Line implements IDrawable{
         recalculate();
     }
 
+    public IDrawable factory(){
+        return new DrawableLine();
+    }
+
     private void recalculate(){
         setStartX(startPos.getX());
         setStartY(startPos.getY());

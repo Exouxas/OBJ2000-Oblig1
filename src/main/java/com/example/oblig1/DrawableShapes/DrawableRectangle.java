@@ -42,6 +42,10 @@ public class DrawableRectangle extends Rectangle implements IDrawable{
         recalculate();
     }
 
+    public IDrawable factory(){
+        return new DrawableRectangle();
+    }
+
     private void recalculate(){
         Point2D minimum = new Point2D(
                 Math.min(startPos.getX(), endPos.getX()),

@@ -42,6 +42,10 @@ public class DrawableEllipse extends Ellipse implements IDrawable{
         recalculate();
     }
 
+    public IDrawable factory(){
+        return new DrawableEllipse();
+    }
+
     private void recalculate(){
 
     }

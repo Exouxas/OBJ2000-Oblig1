@@ -42,6 +42,10 @@ public class DrawableCircle extends Circle implements IDrawable{
         recalculate();
     }
 
+    public IDrawable factory(){
+        return new DrawableCircle();
+    }
+
     private void recalculate(){
         // Set position
         setCenterX(startPos.getX());

@@ -42,6 +42,10 @@ public class DrawableText extends Text implements IDrawable{
         recalculate();
     }
 
+    public IDrawable factory(){
+        return new DrawableText();
+    }
+
     private void recalculate(){
 
     }
