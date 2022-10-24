@@ -40,6 +40,7 @@ public class DrawingTool extends Tool{
         drawStructure.getDrawArea().getChildren().add((Shape)currentShape);
         currentShape.setStart(new Point2D(x, y));
         currentShape.setEnd(new Point2D(x, y));
+        ((Shape) currentShape).setFill(picker.getValue());
     }
 
     @Override
