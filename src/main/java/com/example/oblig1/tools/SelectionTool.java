@@ -5,6 +5,8 @@ import com.example.oblig1.DrawStructure;
 public class SelectionTool extends Tool{
     public SelectionTool(DrawStructure drawStructure){
         super(drawStructure);
+
+        drawStructure.getBackground().setOnMousePressed(e -> {selection.setSelected(null);});
     }
 
     @Override
