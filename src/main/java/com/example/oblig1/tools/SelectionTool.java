@@ -35,6 +35,7 @@ public class SelectionTool extends Tool{
     public void moved(MouseEvent e) {
         Point2D newPosition = new Point2D(e.getX(), e.getY());
         selection.getSelected().setPosition(newPosition.add(offset));
+        selection.resize();
     }
 
     @Override
