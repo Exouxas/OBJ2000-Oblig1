@@ -2,7 +2,6 @@ package com.example.oblig1;
 
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 import java.util.Random;
