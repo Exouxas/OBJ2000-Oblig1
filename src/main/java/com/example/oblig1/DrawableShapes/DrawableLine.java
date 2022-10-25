@@ -48,12 +48,20 @@ public class DrawableLine extends Line implements IDrawable{
 
     @Override
     public Point2D getBounds() {
-        return null;
+        Point2D maximum = new Point2D(
+                Math.max(startPos.getX(), endPos.getX()),
+                Math.max(startPos.getY(), endPos.getY()));
+
+        return maximum.subtract(getRootPosition());
     }
 
     @Override
     public Point2D getRootPosition() {
-        return null;
+        Point2D minimum = new Point2D(
+                Math.min(startPos.getX(), endPos.getX()),
+                Math.min(startPos.getY(), endPos.getY()));
+
+        return minimum;
     }
 
     private void recalculate(){
