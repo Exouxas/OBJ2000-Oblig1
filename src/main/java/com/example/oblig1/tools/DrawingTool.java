@@ -55,6 +55,7 @@ public class DrawingTool extends Tool{
 
     @Override
     public void released() {
+        selection.setSelected(currentShape);
         currentShape = null;
     }
 
