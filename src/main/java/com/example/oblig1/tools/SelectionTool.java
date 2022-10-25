@@ -19,9 +19,15 @@ public class SelectionTool extends Tool{
 
     @Override
     public void pressed(MouseEvent e) {
-        selection.setSelected((IDrawable)e.getSource());
+        if(e.getSource() != selection){
+            selection.setSelected((IDrawable)e.getSource());
+        }
         mousePositionWhenGrabbed = new Point2D(e.getX(), e.getY());
-        shapePositionWhenGrabbed = ((IDrawable) e.getSource()).getPosition();
+        if(e.getSource() != selection){
+            shapePositionWhenGrabbed = ((IDrawable) e.getSource()).getPosition();
+        }else{
+            shapePositionWhenGrabbed = selection.getSelected().getPosition();
+        }
         offset = shapePositionWhenGrabbed.subtract(mousePositionWhenGrabbed);
     }
 

@@ -6,6 +6,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 public class Selection extends Rectangle {
     private IDrawable selectedShape;
@@ -16,6 +17,9 @@ public class Selection extends Rectangle {
         selectedShape = newSelection;
         if(selectedShape != null){
             resize(selectedShape);
+            this.setOnMousePressed(((Shape)selectedShape).getOnMousePressed());
+            this.setOnMouseDragged(((Shape)selectedShape).getOnMouseDragged());
+            this.setOnMouseReleased(((Shape)selectedShape).getOnMouseReleased());
             this.toFront();
         }else{
             this.toBack();
