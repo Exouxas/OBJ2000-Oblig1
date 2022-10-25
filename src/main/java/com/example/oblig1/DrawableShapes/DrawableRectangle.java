@@ -48,30 +48,27 @@ public class DrawableRectangle extends Rectangle implements IDrawable{
 
     @Override
     public Point2D getBounds() {
-        return null;
+        return new Point2D(
+                Math.max(startPos.getX(), endPos.getX()),
+                Math.max(startPos.getY(), endPos.getY())
+        ).subtract(getRootPosition());
     }
 
     @Override
     public Point2D getRootPosition() {
-        return null;
-    }
-
-    private void recalculate(){
-        Point2D minimum = new Point2D(
+        return new Point2D(
                 Math.min(startPos.getX(), endPos.getX()),
                 Math.min(startPos.getY(), endPos.getY())
         );
+    }
 
-        Point2D maximum = new Point2D(
-                Math.max(startPos.getX(), endPos.getX()),
-                Math.max(startPos.getY(), endPos.getY())
-        );
+    private void recalculate(){
+        Point2D root = getRootPosition();
 
-        Point2D size = maximum.subtract(minimum);
+        Point2D size = getBounds();
 
-
-        setX(minimum.getX());
-        setY(minimum.getY());
+        setX(root.getX());
+        setY(root.getY());
 
         setWidth(size.getX());
         setHeight(size.getY());
