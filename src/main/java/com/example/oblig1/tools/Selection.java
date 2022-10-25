@@ -16,7 +16,7 @@ public class Selection extends Rectangle {
     public void setSelected(IDrawable newSelection){
         selectedShape = newSelection;
         if(selectedShape != null){
-            resize(selectedShape);
+            resize();
             this.setOnMousePressed(((Shape)selectedShape).getOnMousePressed());
             this.setOnMouseDragged(((Shape)selectedShape).getOnMouseDragged());
             this.setOnMouseReleased(((Shape)selectedShape).getOnMouseReleased());
@@ -45,9 +45,9 @@ public class Selection extends Rectangle {
         animatedBorder.start();
     }
 
-    private void resize(IDrawable s){
-        Point2D pos = s.getRootPosition();
-        Point2D size = s.getBounds();
+    public void resize(){
+        Point2D pos = selectedShape.getRootPosition();
+        Point2D size = selectedShape.getBounds();
 
         setX(pos.getX());
         setY(pos.getY());
