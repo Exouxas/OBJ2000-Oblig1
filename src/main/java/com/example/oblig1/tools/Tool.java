@@ -2,7 +2,6 @@ package com.example.oblig1.tools;
 
 import com.example.oblig1.DrawStructure;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Shape;
 
 public abstract class Tool {
     protected DrawStructure drawStructure;
@@ -10,11 +9,12 @@ public abstract class Tool {
     protected VBox contextualProperties = new VBox();
     protected VBox contextualInfo = new VBox();
 
-    public Shape selected;
+    public static Selection selection;
     protected boolean isSelected;
 
     public Tool(DrawStructure drawStructure){
         this.drawStructure = drawStructure;
+        selection = new Selection(drawStructure.getDrawArea());
     }
 
     public abstract void pressed(double x, double y);
