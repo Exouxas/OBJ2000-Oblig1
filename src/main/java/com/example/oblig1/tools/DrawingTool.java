@@ -36,6 +36,7 @@ public class DrawingTool extends Tool{
 
     @Override
     public void pressed(double x, double y) {
+        selection.setSelected(null);
         Object selection = shapeSetting.getSelectionModel().getSelectedItem();
         currentShape = ((NamedDrawable)selection).getDrawable().factory();
 
