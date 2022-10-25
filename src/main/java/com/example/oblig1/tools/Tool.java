@@ -1,6 +1,7 @@
 package com.example.oblig1.tools;
 
 import com.example.oblig1.DrawStructure;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 public abstract class Tool {
@@ -17,8 +18,8 @@ public abstract class Tool {
         selection = new Selection(drawStructure.getDrawArea());
     }
 
-    public abstract void pressed(double x, double y);
-    public abstract void moved(double x, double y);
+    public abstract void pressed(MouseEvent e);
+    public abstract void moved(MouseEvent e);
     public abstract void released();
 
     public abstract String getName();

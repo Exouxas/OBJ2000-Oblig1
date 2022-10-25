@@ -8,6 +8,7 @@ import com.example.oblig1.controls.NumberSetting;
 import com.example.oblig1.controls.ShapeSetting;
 import javafx.geometry.Point2D;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
@@ -19,10 +20,13 @@ public class DrawingTool extends Tool{
     CustomSetting colorSetting = new CustomSetting("Color:", drawStructure.getSettingHeight(), drawStructure.getSettingRatio(), picker);
 
     IDrawable currentShape;
+    CondensedMouseEvents selectEvents;
 
 
-    public DrawingTool(DrawStructure drawStructure){
+    public DrawingTool(DrawStructure drawStructure, CondensedMouseEvents selectEvents){
         super(drawStructure);
+
+        this.selectEvents = selectEvents;
 
         picker.setValue(Color.BLACK);
 
@@ -35,7 +39,10 @@ public class DrawingTool extends Tool{
     }
 
     @Override
-    public void pressed(double x, double y) {
+    public void pressed(MouseEvent e) {
+        double x = e.getX();
+        double y = e.getY();
+
         selection.setSelected(null);
         Object selection = shapeSetting.getSelectionModel().getSelectedItem();
         currentShape = ((NamedDrawable)selection).getDrawable().factory();
@@ -45,12 +52,17 @@ public class DrawingTool extends Tool{
         currentShape.setStart(new Point2D(x, y));
         currentShape.setEnd(new Point2D(x, y));
         ((Shape) currentShape).setFill(picker.getValue());
+
+        // Set events to move shapes around and select them with the selection tool.
+        ((Shape) currentShape).setOnMousePressed(selectEvents.pressed);
+        ((Shape) currentShape).setOnMouseDragged(selectEvents.dragged);
+        ((Shape) currentShape).setOnMouseReleased(selectEvents.released);
     }
 
     @Override
-    public void moved(double x, double y) {
+    public void moved(MouseEvent e) {
         if(currentShape != null){
-            currentShape.setEnd(new Point2D(x, y));
+            currentShape.setEnd(new Point2D(e.getX(), e.getY()));
         }
     }
 
