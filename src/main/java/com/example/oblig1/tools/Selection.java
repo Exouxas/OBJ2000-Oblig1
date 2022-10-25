@@ -1,6 +1,6 @@
 package com.example.oblig1.tools;
 
-import com.example.oblig1.DrawableShapes.ISelectable;
+import com.example.oblig1.DrawableShapes.IDrawable;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
@@ -8,11 +8,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Selection extends Rectangle {
-    private ISelectable selectedShape;
-    public ISelectable getSelected(){
+    private IDrawable selectedShape;
+    public IDrawable getSelected(){
         return selectedShape;
     }
-    public void setSelected(ISelectable newSelection){
+    public void setSelected(IDrawable newSelection){
         selectedShape = newSelection;
         if(selectedShape != null){
             resize(selectedShape);
@@ -41,7 +41,7 @@ public class Selection extends Rectangle {
         animatedBorder.start();
     }
 
-    private void resize(ISelectable s){
+    private void resize(IDrawable s){
         Point2D pos = s.getRootPosition();
         Point2D size = s.getBounds();
 

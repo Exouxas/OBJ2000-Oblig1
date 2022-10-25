@@ -46,6 +46,16 @@ public class DrawableRectangle extends Rectangle implements IDrawable{
         return new DrawableRectangle();
     }
 
+    @Override
+    public Point2D getBounds() {
+        return null;
+    }
+
+    @Override
+    public Point2D getRootPosition() {
+        return null;
+    }
+
     private void recalculate(){
         Point2D minimum = new Point2D(
                 Math.min(startPos.getX(), endPos.getX()),

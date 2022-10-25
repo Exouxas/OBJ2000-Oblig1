@@ -46,6 +46,16 @@ public class DrawableCircle extends Circle implements IDrawable{
         return new DrawableCircle();
     }
 
+    @Override
+    public Point2D getBounds() {
+        return null;
+    }
+
+    @Override
+    public Point2D getRootPosition() {
+        return null;
+    }
+
     private void recalculate(){
         // Set position
         setCenterX(startPos.getX());

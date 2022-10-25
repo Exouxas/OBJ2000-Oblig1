@@ -46,6 +46,16 @@ public class DrawableLine extends Line implements IDrawable{
         return new DrawableLine();
     }
 
+    @Override
+    public Point2D getBounds() {
+        return null;
+    }
+
+    @Override
+    public Point2D getRootPosition() {
+        return null;
+    }
+
     private void recalculate(){
         setStartX(startPos.getX());
         setStartY(startPos.getY());

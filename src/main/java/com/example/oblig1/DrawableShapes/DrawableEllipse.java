@@ -46,6 +46,16 @@ public class DrawableEllipse extends Ellipse implements IDrawable{
         return new DrawableEllipse();
     }
 
+    @Override
+    public Point2D getBounds() {
+        return null;
+    }
+
+    @Override
+    public Point2D getRootPosition() {
+        return null;
+    }
+
     private void recalculate(){
 
     }

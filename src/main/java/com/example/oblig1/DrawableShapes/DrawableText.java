@@ -46,6 +46,16 @@ public class DrawableText extends Text implements IDrawable{
         return new DrawableText();
     }
 
+    @Override
+    public Point2D getBounds() {
+        return null;
+    }
+
+    @Override
+    public Point2D getRootPosition() {
+        return null;
+    }
+
     private void recalculate(){
 
     }

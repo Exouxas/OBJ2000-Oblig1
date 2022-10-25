@@ -65,4 +65,16 @@ public interface IDrawable {
      * @return Instance of object
      */
     IDrawable factory();
+
+    /**
+     * Gets the width and height of the shape.
+     * @return Width and height
+     */
+    Point2D getBounds();
+
+    /**
+     * Gets the "root position". (top left point of bounds)
+     * @return Root position
+     */
+    Point2D getRootPosition();
 }
