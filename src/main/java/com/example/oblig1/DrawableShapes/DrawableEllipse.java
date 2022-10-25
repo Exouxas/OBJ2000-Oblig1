@@ -48,15 +48,28 @@ public class DrawableEllipse extends Ellipse implements IDrawable{
 
     @Override
     public Point2D getBounds() {
-        return null;
+        Point2D maximum = new Point2D(
+                Math.max(startPos.getX(), endPos.getX()),
+                Math.max(startPos.getY(), endPos.getY()));
+
+        return maximum.subtract(getRootPosition());
     }
 
     @Override
     public Point2D getRootPosition() {
-        return null;
+        return new Point2D(
+                Math.min(startPos.getX(), endPos.getX()),
+                Math.min(startPos.getY(), endPos.getY()));
     }
 
     private void recalculate(){
+        Point2D center = startPos.add(endPos).multiply(0.5);
+        Point2D scale = getBounds().multiply(0.5);
 
+        setCenterX(center.getX());
+        setCenterY(center.getY());
+
+        setRadiusX(scale.getX());
+        setRadiusY(scale.getY());
     }
 }
