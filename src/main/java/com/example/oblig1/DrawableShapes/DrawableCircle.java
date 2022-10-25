@@ -48,12 +48,12 @@ public class DrawableCircle extends Circle implements IDrawable{
 
     @Override
     public Point2D getBounds() {
-        return null;
+        return new Point2D(getRadius(), getRadius()).multiply(2);
     }
 
     @Override
     public Point2D getRootPosition() {
-        return null;
+        return startPos.subtract(new Point2D(getRadius(), getRadius()));
     }
 
     private void recalculate(){
