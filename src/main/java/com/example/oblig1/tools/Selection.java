@@ -6,7 +6,6 @@ import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
 public class Selection extends Rectangle {
     private ISelectable selectedShape;
