@@ -11,6 +11,7 @@ public abstract class Tool {
     protected VBox contextualInfo = new VBox();
 
     public Shape selected;
+    protected boolean isSelected;
 
     public Tool(DrawStructure drawStructure){
         this.drawStructure = drawStructure;
@@ -30,12 +31,15 @@ public abstract class Tool {
         if(!drawStructure.getInfoBox().getChildren().contains(contextualInfo)){
             drawStructure.getInfoBox().getChildren().add(contextualInfo);
         }
+
+        isSelected = true;
     }
 
     public void deselect(){
         drawStructure.getProperties().getChildren().remove(contextualProperties);
         drawStructure.getInfoBox().getChildren().remove(contextualInfo);
 
+        isSelected = false;
         cancel();
     }
 
