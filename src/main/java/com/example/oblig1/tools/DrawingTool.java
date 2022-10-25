@@ -8,6 +8,7 @@ import com.example.oblig1.controls.NumberSetting;
 import com.example.oblig1.controls.ShapeSetting;
 import javafx.geometry.Point2D;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
 public class DrawingTool extends Tool{
@@ -22,6 +23,8 @@ public class DrawingTool extends Tool{
 
     public DrawingTool(DrawStructure drawStructure){
         super(drawStructure);
+
+        picker.setValue(Color.BLACK);
 
         contextualProperties.getChildren().add(shapeSetting);
         contextualProperties.getChildren().add(colorSetting);
