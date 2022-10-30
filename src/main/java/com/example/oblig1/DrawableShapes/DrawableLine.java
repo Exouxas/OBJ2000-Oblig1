@@ -2,6 +2,7 @@ package com.example.oblig1.DrawableShapes;
 
 import com.example.oblig1.DrawStructure;
 import com.example.oblig1.controls.CustomSetting;
+import com.example.oblig1.controls.NumberSetting;
 import javafx.geometry.Point2D;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.VBox;
@@ -15,8 +16,6 @@ public class DrawableLine extends Line implements IDrawable{
     private VBox settings;
     private DrawStructure structure;
 
-    ColorPicker cp;
-
 
     public DrawableLine(DrawStructure structure){
         super();
@@ -28,15 +27,27 @@ public class DrawableLine extends Line implements IDrawable{
 
         // Generate settings for this shape
         settings = new VBox();
-        cp = new ColorPicker(Color.BLACK);
-        CustomSetting colorSetting = new CustomSetting(
-                "Color:",
+
+        // Changeable
+        ColorPicker strokePicker = new ColorPicker(Color.BLACK);
+        CustomSetting strokeSetting = new CustomSetting(
+                "Stroke color:",
                 structure,
-                cp);
-        cp.setOnAction(e -> {
-            setColor(cp.getValue());
+                strokePicker);
+        strokePicker.setOnAction(e -> {
+            setStroke(strokePicker.getValue());
         });
-        settings.getChildren().add(colorSetting);
+        settings.getChildren().add(strokeSetting);
+
+        NumberSetting strokeThicknessSetting = new NumberSetting(
+                "Stroke thickness:",
+                structure
+        );
+        strokeThicknessSetting.setOnAction(e -> {
+            setStrokeWidth(((NumberSetting)e.getSource()).getValue());
+        });
+        strokeThicknessSetting.setValue(getStrokeWidth());
+        settings.getChildren().add(strokeThicknessSetting);
     }
 
     @Override
@@ -69,15 +80,6 @@ public class DrawableLine extends Line implements IDrawable{
     @Override
     public IDrawable factory(DrawStructure structure) {
         return new DrawableLine(structure);
-    }
-
-    @Override
-    public void setColor(Color color){
-        this.setFill(color);
-        this.setStroke(color);
-        if(cp.getValue() != color){
-            cp.setValue(color);
-        }
     }
 
     @Override

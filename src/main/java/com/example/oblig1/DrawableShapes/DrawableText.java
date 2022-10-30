@@ -2,10 +2,14 @@ package com.example.oblig1.DrawableShapes;
 
 import com.example.oblig1.DrawStructure;
 import com.example.oblig1.controls.CustomSetting;
+import com.example.oblig1.controls.NumberSetting;
 import javafx.geometry.Point2D;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class DrawableText extends Text implements IDrawable{
@@ -14,8 +18,6 @@ public class DrawableText extends Text implements IDrawable{
 
     private VBox settings;
     private DrawStructure structure;
-
-    ColorPicker cp;
 
 
     public DrawableText(DrawStructure structure){
@@ -28,15 +30,55 @@ public class DrawableText extends Text implements IDrawable{
 
         // Generate settings for this shape
         settings = new VBox();
-        cp = new ColorPicker(Color.BLACK);
-        CustomSetting colorSetting = new CustomSetting(
-                "Color:",
+
+        // Changeable
+        ColorPicker fillPicker = new ColorPicker(Color.BLACK);
+        CustomSetting fillSetting = new CustomSetting(
+                "Fill color:",
                 structure,
-                cp);
-        cp.setOnAction(e -> {
-            setColor(cp.getValue());
+                fillPicker);
+        fillPicker.setOnAction(e -> {
+            setFill(fillPicker.getValue());
         });
-        settings.getChildren().add(colorSetting);
+        settings.getChildren().add(fillSetting);
+
+        ColorPicker strokePicker = new ColorPicker(Color.BLACK);
+        CustomSetting strokeSetting = new CustomSetting(
+                "Stroke color:",
+                structure,
+                strokePicker);
+        strokePicker.setOnAction(e -> {
+            setStroke(strokePicker.getValue());
+        });
+        settings.getChildren().add(strokeSetting);
+
+        NumberSetting strokeThicknessSetting = new NumberSetting(
+                "Stroke thickness:",
+                structure
+        );
+        strokeThicknessSetting.setOnAction(e -> {
+            setStrokeWidth(((NumberSetting)e.getSource()).getValue());
+        });
+        strokeThicknessSetting.setValue(getStrokeWidth());
+        settings.getChildren().add(strokeThicknessSetting);
+
+        TextField text = new TextField("Insert text here");
+        CustomSetting textSetting = new CustomSetting("Text:", structure, text);
+        text.textProperty().addListener((observable, oldValue, newValue) -> {
+            setText(newValue);
+        });
+        settings.getChildren().add(textSetting);
+
+        NumberSetting fontSizeSetting = new NumberSetting(
+                "Font size:",
+                structure
+        );
+        fontSizeSetting.setOnAction(e -> {
+            setFont(new Font(((NumberSetting)e.getSource()).getValue()));
+            recalculate();
+        });
+        fontSizeSetting.setValue(getFont().getSize());
+        settings.getChildren().add(fontSizeSetting);
     }
 
     @Override
@@ -72,30 +114,22 @@ public class DrawableText extends Text implements IDrawable{
     }
 
     @Override
-    public void setColor(Color color){
-        this.setFill(color);
-        this.setStroke(color);
-        if(cp.getValue() != color){
-            cp.setValue(color);
-        }
-    }
-
-    @Override
     public VBox getSettings() {
         return settings;
     }
 
     @Override
     public Point2D getBounds() {
-        return null;
+        return new Point2D(10,10);
     }
 
     @Override
     public Point2D getRootPosition() {
-        return null;
+        return startPos;
     }
 
     private void recalculate(){
-
+        setX(startPos.getX());
+        setY(startPos.getY() + getFont().getSize());
     }
 }

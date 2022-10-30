@@ -3,7 +3,6 @@ package com.example.oblig1.DrawableShapes;
 import com.example.oblig1.DrawStructure;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 
 public interface IDrawable {
     /**
@@ -61,12 +60,6 @@ public interface IDrawable {
      * @return Instance of object
      */
     IDrawable factory(DrawStructure structure);
-
-    /**
-     * Set color of the shape
-     * @param color Color to set
-     */
-    void setColor(Color color);
 
     /**
      * Gets a VBox containing all settings for the selected shape
