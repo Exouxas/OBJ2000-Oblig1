@@ -15,7 +15,7 @@ public abstract class Tool {
 
     public Tool(DrawStructure drawStructure){
         this.drawStructure = drawStructure;
-        selection = new Selection(drawStructure.getDrawArea());
+        selection = new Selection(drawStructure);
     }
 
     public abstract void pressed(MouseEvent e);

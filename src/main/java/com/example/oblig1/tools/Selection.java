@@ -1,22 +1,28 @@
 package com.example.oblig1.tools;
 
+import com.example.oblig1.DrawStructure;
 import com.example.oblig1.DrawableShapes.IDrawable;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Point2D;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 public class Selection extends Rectangle {
+    private DrawStructure structure;
+
     private IDrawable selectedShape;
     public IDrawable getSelected(){
         return selectedShape;
     }
     public void setSelected(IDrawable newSelection){
+        if(selectedShape != null){
+            structure.getInfoBox().getChildren().remove(selectedShape.getSettings());
+        }
         selectedShape = newSelection;
         if(selectedShape != null){
             resize();
+            structure.getInfoBox().getChildren().add(selectedShape.getSettings());
             this.setOnMousePressed(((Shape)selectedShape).getOnMousePressed());
             this.setOnMouseDragged(((Shape)selectedShape).getOnMouseDragged());
             this.setOnMouseReleased(((Shape)selectedShape).getOnMouseReleased());
@@ -26,11 +32,12 @@ public class Selection extends Rectangle {
         }
     }
 
-    public Selection(Pane drawArea){
+    public Selection(DrawStructure structure){
+        this.structure = structure;
         setFill(Color.TRANSPARENT);
 
         // Add and move selection before it's possible to see
-        drawArea.getChildren().add(this);
+        structure.getDrawArea().getChildren().add(this);
         this.toBack();
 
         // Make stroke visible, and animated

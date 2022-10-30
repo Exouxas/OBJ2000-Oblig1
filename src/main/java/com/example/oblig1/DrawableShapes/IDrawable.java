@@ -1,6 +1,9 @@
 package com.example.oblig1.DrawableShapes;
 
+import com.example.oblig1.DrawStructure;
 import javafx.geometry.Point2D;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 public interface IDrawable {
     /**
@@ -62,9 +65,22 @@ public interface IDrawable {
 
     /**
      * Basic factory method.
+     * @param structure Collection of settings used for scaling the settings
      * @return Instance of object
      */
-    IDrawable factory();
+    IDrawable factory(DrawStructure structure);
+
+    /**
+     * Set color of the shape
+     * @param color
+     */
+    void setColor(Color color);
+
+    /**
+     * Gets a VBox containing all settings for the selected shape
+     * @return VBox containing settings
+     */
+    VBox getSettings();
 
     /**
      * Gets the width and height of the shape.

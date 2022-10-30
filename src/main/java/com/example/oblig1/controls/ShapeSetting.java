@@ -1,18 +1,19 @@
 package com.example.oblig1.controls;
 
+import com.example.oblig1.DrawStructure;
 import com.example.oblig1.DrawableShapes.*;
 import javafx.util.StringConverter;
 
 public class ShapeSetting extends ComboSetting {
-    public ShapeSetting(String text, double height, double labelPercent){
-        super(text, height, labelPercent);
+    public ShapeSetting(String text, DrawStructure structure){
+        super(text, structure);
 
 
-        addValue(new NamedDrawable(new DrawableRectangle()));
-        addValue(new NamedDrawable(new DrawableCircle()));
-        addValue(new NamedDrawable(new DrawableEllipse()));
-        addValue(new NamedDrawable(new DrawableLine()));
-        addValue(new NamedDrawable(new DrawableText()));
+        addValue(new NamedDrawable(new DrawableRectangle(structure)));
+        addValue(new NamedDrawable(new DrawableCircle(structure)));
+        addValue(new NamedDrawable(new DrawableEllipse(structure)));
+        addValue(new NamedDrawable(new DrawableLine(structure)));
+        addValue(new NamedDrawable(new DrawableText(structure)));
 
         this.setConverter(new StringConverter<Object>(){
             @Override

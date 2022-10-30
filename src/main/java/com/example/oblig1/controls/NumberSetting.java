@@ -1,5 +1,6 @@
 package com.example.oblig1.controls;
 
+import com.example.oblig1.DrawStructure;
 import javafx.scene.control.TextField;
 
 public class NumberSetting extends CustomSetting {
@@ -14,8 +15,8 @@ public class NumberSetting extends CustomSetting {
     }
 
 
-    public NumberSetting(String text, double height, double labelPercent){
-        super(text, height, labelPercent, new TextField("0.0"));
+    public NumberSetting(String text, DrawStructure structure){
+        super(text, structure, new TextField("0.0"));
 
         field = (TextField)control;
 

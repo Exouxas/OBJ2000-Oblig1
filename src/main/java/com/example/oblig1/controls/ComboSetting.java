@@ -1,5 +1,6 @@
 package com.example.oblig1.controls;
 
+import com.example.oblig1.DrawStructure;
 import javafx.event.EventHandler;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.SingleSelectionModel;
@@ -21,8 +22,8 @@ public class ComboSetting extends CustomSetting {
     }
 
 
-    public ComboSetting(String text, double height, double labelPercent){
-        super(text, height, labelPercent, new ComboBox<Object>());
+    public ComboSetting(String text, DrawStructure structure){
+        super(text, structure, new ComboBox<Object>());
 
         box = (ComboBox)control;
     }

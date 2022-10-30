@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DrawingProgram extends Application {
     // Structures
@@ -27,7 +26,7 @@ public class DrawingProgram extends Application {
     public void start(Stage stage){
         // Structure setup
         drawStructure.getMainSeparator().add(drawStructure.getProperties(), 0, 0);
-        ComboSetting toolSetting = new ComboSetting("Tool:", drawStructure.getSettingHeight(), drawStructure.getSettingRatio());
+        ComboSetting toolSetting = new ComboSetting("Tool:", drawStructure);
         drawStructure.getProperties().getChildren().add(toolSetting);
         toolSetting.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
             tool = (Tool)newValue;
