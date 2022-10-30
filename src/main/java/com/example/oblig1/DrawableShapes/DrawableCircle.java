@@ -4,11 +4,16 @@ import com.example.oblig1.DrawStructure;
 import com.example.oblig1.controls.CustomSetting;
 import com.example.oblig1.controls.NumberSetting;
 import javafx.geometry.Point2D;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class DrawableCircle extends Circle implements IDrawable{
     private Point2D startPos;
@@ -65,11 +70,94 @@ public class DrawableCircle extends Circle implements IDrawable{
         strokeThicknessSetting.setValue(getStrokeWidth());
         settings.getChildren().add(strokeThicknessSetting);
 
+        Button front = new Button("To front");
+        CustomSetting frontSetting = new CustomSetting("To front:", structure, front);
+        settings.getChildren().add(frontSetting);
+        front.setOnAction(e -> {
+            toFront();
+        });
+
+        Button fwd = new Button("Forward");
+        CustomSetting fwdSetting = new CustomSetting("Forward:", structure, fwd);
+        settings.getChildren().add(fwdSetting);
+        fwd.setOnAction(e -> {
+            zOrder(1);
+        });
+
+        Button bwd = new Button("Backward");
+        CustomSetting bwdSetting = new CustomSetting("Backward:", structure, bwd);
+        settings.getChildren().add(bwdSetting);
+        bwd.setOnAction(e -> {
+            zOrder(-1);
+        });
+
+        Button back = new Button("To back");
+        CustomSetting backSetting = new CustomSetting("To back:", structure, back);
+        settings.getChildren().add(backSetting);
+        back.setOnAction(e -> {
+            toBack();
+        });
+
+
 
         // Info
         settings.getChildren().add(typeLabel);
         settings.getChildren().add(areaLabel);
         settings.getChildren().add(radiusLabel);
+
+    }
+
+    private void zOrder(int positionToMove){ // Doesn't function as expected, but should be close to functioning
+        LinkedList<Node> l1 = new LinkedList<>();
+        LinkedList<Node> l2 = new LinkedList<>();
+
+        boolean found = false;
+        for(Node n : structure.getDrawOrder()){
+            if(found){
+                l2.add(n);
+            }else{
+                if(n == this){
+                    found = true;
+                }else{
+                    l1.add(n);
+                }
+            }
+        }
+
+        for(int i = 0; i < Math.abs(positionToMove); i++){
+            if(positionToMove > 0){
+                if(l2.size() > 0){
+                    Node n = l2.getFirst();
+                    l1.add(n);
+                    l2.remove(n);
+                }
+            } else if (positionToMove < 0) {
+                if(l1.size() > 0) {
+                    Node n = l1.getLast();
+                    l2.addFirst(n);
+                    l1.remove(n);
+                }
+            }
+        }
+
+
+        for(Node n : l1){
+            n.toBack();
+        }
+
+        for(Node n : l2){
+            n.toFront();
+        }
+
+        structure.getBackground().toBack();
+
+        structure.getDrawOrder().removeAll(l1);
+        structure.getDrawOrder().remove(this);
+        structure.getDrawOrder().removeAll(l2);
+
+        structure.getDrawOrder().addAll(l1);
+        structure.getDrawOrder().add(this);
+        structure.getDrawOrder().addAll(l2);
 
     }
 

@@ -4,6 +4,7 @@ import com.example.oblig1.DrawStructure;
 import com.example.oblig1.controls.CustomSetting;
 import com.example.oblig1.controls.NumberSetting;
 import javafx.geometry.Point2D;
+import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -82,6 +83,20 @@ public class DrawableText extends Text implements IDrawable{
         });
         fontSizeSetting.setValue(getFont().getSize());
         settings.getChildren().add(fontSizeSetting);
+
+        Button front = new Button("To front");
+        CustomSetting frontSetting = new CustomSetting("To front:", structure, front);
+        settings.getChildren().add(frontSetting);
+        front.setOnAction(e -> {
+            toFront();
+        });
+
+        Button back = new Button("To back");
+        CustomSetting backSetting = new CustomSetting("To back:", structure, back);
+        settings.getChildren().add(backSetting);
+        back.setOnAction(e -> {
+            toBack();
+        });
 
 
         // Info

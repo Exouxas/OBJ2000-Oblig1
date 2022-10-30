@@ -1,9 +1,11 @@
 package com.example.oblig1;
 
+import javafx.scene.Node;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 public class DrawStructure {
@@ -49,6 +51,11 @@ public class DrawStructure {
     private double settingRatio;
     public double getSettingRatio() {
         return settingRatio;
+    }
+
+    private LinkedList<Node> drawOrder = new LinkedList<>();
+    public LinkedList<Node> getDrawOrder() {
+        return drawOrder;
     }
 
     public DrawStructure(double settingHeight, double settingWidth, double settingRatio){

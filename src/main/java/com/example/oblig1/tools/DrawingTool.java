@@ -40,6 +40,7 @@ public class DrawingTool extends Tool{
 
         // Hurts a little to do it like this, but sometimes you just have to be forceful.
         drawStructure.getDrawArea().getChildren().add((Shape)currentShape);
+        drawStructure.getDrawOrder().add((Shape)currentShape);
         currentShape.setStart(new Point2D(x, y));
         currentShape.setEnd(new Point2D(x, y));
 
