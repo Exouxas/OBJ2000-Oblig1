@@ -56,14 +56,6 @@ public interface IDrawable {
     }
 
     /**
-     * Move the shape a direction.
-     * @param magnitude Direction and magnitude
-     */
-    default void translate(Point2D magnitude){
-        setPosition(getPosition().add(magnitude));
-    }
-
-    /**
      * Basic factory method.
      * @param structure Collection of settings used for scaling the settings
      * @return Instance of object
