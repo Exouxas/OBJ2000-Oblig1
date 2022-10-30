@@ -19,6 +19,9 @@ public class DrawableText extends Text implements IDrawable{
     private VBox settings;
     private DrawStructure structure;
 
+    // Info labels
+    Label typeLabel = new Label(getName());
+
 
     public DrawableText(DrawStructure structure){
         super();
@@ -79,6 +82,10 @@ public class DrawableText extends Text implements IDrawable{
         });
         fontSizeSetting.setValue(getFont().getSize());
         settings.getChildren().add(fontSizeSetting);
+
+
+        // Info
+        settings.getChildren().add(typeLabel);
     }
 
     @Override

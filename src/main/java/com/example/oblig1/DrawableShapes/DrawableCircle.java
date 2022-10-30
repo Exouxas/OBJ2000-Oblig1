@@ -17,6 +17,11 @@ public class DrawableCircle extends Circle implements IDrawable{
     private VBox settings;
     private DrawStructure structure;
 
+    // Info labels
+    Label typeLabel = new Label(getName());
+    Label areaLabel = new Label();
+    Label radiusLabel = new Label();
+
 
     public DrawableCircle(DrawStructure structure){
         super();
@@ -61,8 +66,11 @@ public class DrawableCircle extends Circle implements IDrawable{
         settings.getChildren().add(strokeThicknessSetting);
 
 
-
         // Info
+        settings.getChildren().add(typeLabel);
+        settings.getChildren().add(areaLabel);
+        settings.getChildren().add(radiusLabel);
+
     }
 
     @Override
@@ -119,5 +127,8 @@ public class DrawableCircle extends Circle implements IDrawable{
 
         // Set radius
         setRadius(startPos.distance(endPos));
+
+        areaLabel.setText("Area: " + (int)(Math.pow(getRadius(), 2) * Math.PI * 100) / 100d + " px^2");
+        radiusLabel.setText("Radius: " + (int)(getRadius() * 100) / 100d + " px");
     }
 }

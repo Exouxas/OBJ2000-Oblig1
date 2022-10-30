@@ -5,6 +5,7 @@ import com.example.oblig1.controls.CustomSetting;
 import com.example.oblig1.controls.NumberSetting;
 import javafx.geometry.Point2D;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -15,6 +16,12 @@ public class DrawableRectangle extends Rectangle implements IDrawable{
 
     private VBox settings;
     private DrawStructure structure;
+
+    // Info labels
+    Label typeLabel = new Label(getName());
+    Label areaLabel = new Label();
+    Label heightLabel = new Label();
+    Label widthLabel = new Label();
 
 
     public DrawableRectangle(DrawStructure structure){
@@ -58,6 +65,13 @@ public class DrawableRectangle extends Rectangle implements IDrawable{
         });
         strokeThicknessSetting.setValue(getStrokeWidth());
         settings.getChildren().add(strokeThicknessSetting);
+
+
+        // Info
+        settings.getChildren().add(typeLabel);
+        settings.getChildren().add(areaLabel);
+        settings.getChildren().add(heightLabel);
+        settings.getChildren().add(widthLabel);
     }
 
     @Override
@@ -123,5 +137,9 @@ public class DrawableRectangle extends Rectangle implements IDrawable{
 
         setWidth(size.getX());
         setHeight(size.getY());
+
+        areaLabel.setText("Area: " + getWidth() * getHeight() + " px^2");
+        heightLabel.setText("Height: " + getHeight() + " px");
+        widthLabel.setText("Width: " + getWidth() + " px");
     }
 }

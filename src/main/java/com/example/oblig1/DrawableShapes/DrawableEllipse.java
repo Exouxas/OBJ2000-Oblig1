@@ -5,6 +5,7 @@ import com.example.oblig1.controls.CustomSetting;
 import com.example.oblig1.controls.NumberSetting;
 import javafx.geometry.Point2D;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
@@ -15,6 +16,12 @@ public class DrawableEllipse extends Ellipse implements IDrawable{
 
     private VBox settings;
     private DrawStructure structure;
+
+    // Info labels
+    Label typeLabel = new Label(getName());
+    Label areaLabel = new Label();
+    Label verticalRadiusLabel = new Label();
+    Label horizontalRadiusLabel = new Label();
 
 
     public DrawableEllipse(DrawStructure structure){
@@ -58,6 +65,13 @@ public class DrawableEllipse extends Ellipse implements IDrawable{
         });
         strokeThicknessSetting.setValue(getStrokeWidth());
         settings.getChildren().add(strokeThicknessSetting);
+
+
+        // Info
+        settings.getChildren().add(typeLabel);
+        settings.getChildren().add(areaLabel);
+        settings.getChildren().add(verticalRadiusLabel);
+        settings.getChildren().add(horizontalRadiusLabel);
     }
 
     @Override
@@ -122,5 +136,9 @@ public class DrawableEllipse extends Ellipse implements IDrawable{
 
         setRadiusX(scale.getX());
         setRadiusY(scale.getY());
+
+        areaLabel.setText("Area: " + (int)(getRadiusX() * getRadiusY() * Math.PI * 100) / 100d + " px^2");
+        verticalRadiusLabel.setText("Vertical radius: " + getRadiusY() + " px");
+        horizontalRadiusLabel.setText("Horizontal radius: " + getRadiusX() + " px");
     }
 }

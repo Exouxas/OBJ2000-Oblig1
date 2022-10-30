@@ -5,6 +5,7 @@ import com.example.oblig1.controls.CustomSetting;
 import com.example.oblig1.controls.NumberSetting;
 import javafx.geometry.Point2D;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -15,6 +16,10 @@ public class DrawableLine extends Line implements IDrawable{
 
     private VBox settings;
     private DrawStructure structure;
+
+    // Info labels
+    Label typeLabel = new Label(getName());
+    Label lengthLabel = new Label();
 
 
     public DrawableLine(DrawStructure structure){
@@ -48,6 +53,11 @@ public class DrawableLine extends Line implements IDrawable{
         });
         strokeThicknessSetting.setValue(getStrokeWidth());
         settings.getChildren().add(strokeThicknessSetting);
+
+
+        // Info
+        settings.getChildren().add(typeLabel);
+        settings.getChildren().add(lengthLabel);
     }
 
     @Override
@@ -110,5 +120,7 @@ public class DrawableLine extends Line implements IDrawable{
         setStartY(startPos.getY());
         setEndX(endPos.getX());
         setEndY(endPos.getY());
+
+        lengthLabel.setText("Length: " + (int)(startPos.distance(endPos) * 100) / 100d + " px");
     }
 }
