@@ -64,7 +64,7 @@ public interface IDrawable {
 
     /**
      * Set color of the shape
-     * @param color
+     * @param color Color to set
      */
     void setColor(Color color);
 
