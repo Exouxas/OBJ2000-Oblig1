@@ -3,6 +3,7 @@ package com.example.oblig1.DrawableShapes;
 import com.example.oblig1.DrawStructure;
 import com.example.oblig1.controls.CustomSetting;
 import com.example.oblig1.controls.NumberSetting;
+import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -109,9 +110,10 @@ public class DrawableCircle extends Circle implements IDrawable{
     private void zOrder(int positionToMove){ // Doesn't function as expected, but should be close to functioning
         LinkedList<Node> l1 = new LinkedList<>();
         LinkedList<Node> l2 = new LinkedList<>();
+        ObservableList<Node> l = structure.getDrawArea().getChildren();
 
         boolean found = false;
-        for(Node n : structure.getDrawOrder()){
+        for(Node n : l){
             if(found){
                 l2.add(n);
             }else{
@@ -148,15 +150,6 @@ public class DrawableCircle extends Circle implements IDrawable{
         }
 
         structure.getBackground().toBack();
-
-        structure.getDrawOrder().removeAll(l1);
-        structure.getDrawOrder().remove(this);
-        structure.getDrawOrder().removeAll(l2);
-
-        structure.getDrawOrder().addAll(l1);
-        structure.getDrawOrder().add(this);
-        structure.getDrawOrder().addAll(l2);
-
     }
 
     @Override
