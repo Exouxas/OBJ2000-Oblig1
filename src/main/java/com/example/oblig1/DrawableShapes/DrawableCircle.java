@@ -12,7 +12,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class DrawableCircle extends Circle implements IDrawable{
@@ -140,13 +139,12 @@ public class DrawableCircle extends Circle implements IDrawable{
             }
         }
 
-
-        for(Node n : l1){
-            n.toBack();
+        for(int i = l1.size() - 1; i >= 0; i--){
+            l1.get(i).toBack();
         }
 
-        for(Node n : l2){
-            n.toFront();
+        for(int i = 0; i < l2.size(); i++){
+            l2.get(i).toFront();
         }
 
         structure.getBackground().toBack();
